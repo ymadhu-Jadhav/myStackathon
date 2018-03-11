@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import {Login, Signup, UserHome, AllCategories, Sidebar, SingleCategory,allBudgets, TrackExpenses} from './components'
+import {Login, Signup, UserHome, AllCategories, Sidebar, SingleCategory,AllBudgets, TrackExpenses} from './components'
 import {me,fetchAllCategories,fetchAllBudgets } from './store'
 
 /**
@@ -27,9 +27,10 @@ class Routes extends Component {
           isLoggedIn &&
             <Switch>
               {/* Routes placed here are only available after logging in */}
+              <Route exact path="/categories" component={AllCategories} />
               <Route exact path="/home" component={AllCategories} />
-              <Route exact path="/allBudgets"  component={allBudgets} />
-              <Route exact path="/editBudgets/:budgetId"  component={allBudgets} />
+              <Route exact path="/allBudgets"  component={AllBudgets} />
+              <Route exact path="/editBudgets/:budgetId"  component={AllBudgets} />
               <Route exact path="/categories/singleCategory/:categoryId"  component={SingleCategory} />
               <Route exact path="/trackExpenses"  component={TrackExpenses} />
              

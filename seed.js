@@ -37,7 +37,7 @@ const categories = [{
     name: 'Health',
     image: '/images/tampons1.png'
 }, {
-    name: 'Restaurant & Dining',
+    name: 'Restaurant',
     image: '/images/tampons1.png'
 }, {
     name: 'Shopping & Entertainment',
@@ -55,13 +55,13 @@ const categories = [{
     name: 'Finance',
     image: '/images/tampons1.png'
 }, {
-    name: 'Cash-Checks-Miscellaneous',
+    name: 'Misc',
     image: '/images/tampons1.png'
 }]
 
 
 const expenses = [{
-expsDate: 3/28/2018,
+expsDate: '3/28/2018',
 month: 'March',
 quarter: 'Q1',
 year: 2018,
@@ -71,7 +71,7 @@ categoryId: 2,
 amount: 285
 
 }, {
-expsDate: 1/16/2018,
+expsDate: '1/16/2018',
 month: 'January',
 quarter: 'Q1',
 year: 2018,
@@ -81,16 +81,16 @@ categoryId: 1,
 amount: 400
 },
 {
-  expsDate: 3/15/2018,
+  expsDate: '3/15/2018',
   month: 'March',
   quarter: 'Q1',
   year: 2018,
-  merchant: 'Kayak',
+  merchant: 'Walgreens',
   accountNo: 98572,
-  categoryId: 8,
+  categoryId: 4,
   amount: 60
   },{
-expsDate: 2/20/2018,
+expsDate: '2/20/2018',
 month: 'February',
 quarter: 'Q1',
 year: 2018,
@@ -99,7 +99,7 @@ accountNo: 98572,
 categoryId: 1,
 amount: 300
 },{
-expsDate: 3/21/2018,
+expsDate:'3/21/2018',
 month: 'March',
 quarter: 'Q1',
 year: 2018,
@@ -109,7 +109,7 @@ categoryId: 1,
 amount: 350
 },
 {
-  expsDate: 3/10/2018,
+  expsDate: '3/10/2018',
   month: 'March',
   quarter: 'Q1',
   year: 2018,
@@ -118,7 +118,7 @@ amount: 350
   categoryId: 3,
   amount: 45
   }, {
-expsDate: 9/18/2017,
+expsDate: '9/18/2017',
 month: 'September',
 quarter: 'Q3',
 year: 2017,
@@ -127,7 +127,7 @@ accountNo: 98572,
 categoryId: 5,
 amount: 85
 },{
-expsDate: 9/28/2017,
+expsDate: '9/28/2017',
 month: 'September',
 quarter: 'Q3',
 year: 2017,
@@ -136,16 +136,35 @@ accountNo: 98572,
 categoryId: 5,
 amount: 300
 },{
-  expsDate: 3/20/2018,
+  expsDate: '3/20/2018',
   month: 'March',
   quarter: 'Q1',
   year: 2018,
-  merchant: 'Staples',
+  merchant: 'Just-Bagels',
   accountNo: 98572,
-  categoryId: 11,
+  categoryId: 5,
   amount: 50
-  },{
-expsDate: 5/21/2017,
+  },
+  {
+    expsDate: '3/25/2018',
+    month: 'March',
+    quarter: 'Q1',
+    year: 2018,
+    merchant: 'Pizza-Zone',
+    accountNo: 98572,
+    categoryId: 5,
+    amount: 60
+    },{
+      expsDate: '3/26/2018',
+      month: 'March',
+      quarter: 'Q1',
+      year: 2018,
+      merchant: 'Food-Zone',
+      accountNo: 98572,
+      categoryId: 5,
+      amount: 45
+      },{
+expsDate: '5/21/2017',
 month: 'May',
 quarter: 'Q2',
 year: 2017,
@@ -154,7 +173,7 @@ accountNo: 98572,
 categoryId: 3,
 amount: 600
 },{
-expsDate: 11/15/2017,
+expsDate: '11/15/2017',
 month: 'November',
 quarter: 'Q4',
 year: 2017,

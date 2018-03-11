@@ -1,7 +1,7 @@
 
 body {
   font-family: sans-serif;
-    background-image: url("images/stackathon-background.jpg") 
+    
 }
 a {
   text-decoration: none;
@@ -18,7 +18,7 @@ label {
 .navBar {
   font-family: fantasy;
   font-size-adjust: inherit;
-  background-color: #33cc3b;
+  /* background-color: #cc8a33; */
 }
 
 

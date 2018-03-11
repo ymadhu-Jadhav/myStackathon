@@ -67,7 +67,7 @@ import {PieChart} from 'react-easy-chart';
 
 function toObject(arr) {
   var returnArray=[];
-  var colorArr=['#00bfff','#dce7c5','#0040ff','#8000ff','#80ff00','#d9534f','	#FF1493','#ADFF2F','#ADD8E6','#8A2BE2','#7FFFD4'];
+  var colorArr=['#00bfff','#FF1493','#7FFFD4','#FFD700','#E9967A','#90EE90','#80ff00','	#E9967A','	#FF1493','#90EE90','#FFD700'];
   console.log(colorArr.length);
   for (var i = 0;i < arr.length;i++)
   {

@@ -61,12 +61,12 @@ export const fetchAllExpensesBySingleCategory = (timeLine,categoryId) => {
 // budget comparison
 
 export const fetchAllExpensesToCompare = (timeLine,categoryId,budget) => {
-	// console.log("fetchAllExpensesByCategory");
+	 console.log("fetchAllExpensesByCategory");
 	//  console.log(timeLine);
     //   console.log(categoryId);
 	return dispatch => {
 		return axios.get(`/api/expenses/gropupByAllCategory/budgets/${timeLine}`)
-			.then( res => dispatch(allExpensesAndBudget(res.data)))
+			.then( res => dispatch(allExpenses(res.data)))
 			.catch(err => console.error('Oops! What did you just do in fetchAllExpensesToCompare thunk?', err))
 	}
 }
