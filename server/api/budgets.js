@@ -4,7 +4,7 @@ module.exports = router
 
 //Get All Budgets
 router.get('/', (req, res, next) => {
-    Budget.findAll({})
+    Budget.findAll({include: [{model: Category}]})
         .then(budgets => res.json(budgets))
         .catch(next)
 })

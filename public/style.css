@@ -1,7 +1,8 @@
+
 body {
   font-family: sans-serif;
+    background-image: url("images/stackathon-background.jpg") 
 }
-
 a {
   text-decoration: none;
 }
@@ -10,12 +11,22 @@ label {
   display: block;
 }
 
-nav a {
+.nav a {
   display: inline-block;
-  margin: 1em;
+ 
 }
+.navBar {
+  font-family: fantasy;
+  font-size-adjust: inherit;
+  background-color: #33cc3b;
+}
+
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+.textColor {
+  text-decoration: none;
+  color: hsl(305, 88%, 35%);
 }

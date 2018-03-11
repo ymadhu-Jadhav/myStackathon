@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Category, Expense} = require('../db/models')
+const Sequelize = require('sequelize')
 module.exports = router
 
 //Get All Categories
@@ -33,12 +34,37 @@ router.get('/:categoryId/expenses/:expenseId', (req, res, next)=>{
     .catch(next)
 })
 
-//GET all the expenses of the specific category where categoryExpenses > categoryBudget Eg: /:categoryId/expenses/budgets/:categoryId
-// router.get('/:categoryId/expenses', (req, res, next)=>{
-// 	Category.findAll({ where: { id: req.params.categoryId}, include: [{ model: Expense}]})
-// 	.then( manyExpenses => res.json(manyExpenses))
-// 	Category.findById({ where: { id: req.params.categoryId}, include: [{ model: Expense}]})
+//GET sum of all the expenses of the specific category Eg: /:categoryId/expenses/budgets/:categoryId
+ router.get('/:categoryId/sumOfExpenses/expenses', (req, res, next)=>{
+ 	Expense.findAll({ attributes: { expenseId: [Sequelize.fn('count',
+ 	Sequelize.col('expenses.id')),'expenseCount'], 
+	include: [{ attributes: [],model: Category}],
+	group: ['category.id']
+ }
+ 	.then( sum => res.json(sum))
+	.catch(next)
+ 	})
+ })
+
+// //GET sum of all the expenses of the specific category Eg: /:categoryId/expenses/budgets/:categoryId
+// router.get('/:categoryId/sumOfExpenses/expenses', (req, res, next)=>{
+// 	Category.findAll({ attributes: { categoryId: [Sequelize.fn('count',
+// 	Sequelize.col('categories.id')),'categoryCount'], 
+// 	include: [{ attributes: [],model: Expense}],
+// 	group: ['expense.id','expense.amount']
+// }
+// 	.then( sum => res.json(sum))
 // 	.catch(next)
+// 	})
+// })
+
+
+
+// //GET sum of expenses of the specific category.Eg: categories/1/expenses
+// router.get('/:categoryId/expenses/:expenseId', (req, res, next)=>{
+//     Category.findAll(req.params.categoryId, {include: [{model: Expense}]} )
+//     .then( categoryExpenses => res.json(categoryExpenses))
+//     .catch(next)
 // })
 
 router.post('/', (req, res, next) => {

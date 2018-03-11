@@ -18,7 +18,7 @@ const users = [{
   email: 'joleene@m.com',
   password: '333'
 }, {
-  firstName: 'Julia',
+  firstName: 'Jenny',
   lastName: 'K',
   email: 'jennifer@k.com',
   password: '123'
@@ -61,7 +61,7 @@ const categories = [{
 
 
 const expenses = [{
-expsDate: 3-28-2018,
+expsDate: 3/28/2018,
 month: 'March',
 quarter: 'Q1',
 year: 2018,
@@ -71,7 +71,7 @@ categoryId: 2,
 amount: 285
 
 }, {
-expsDate: 1-16-2018,
+expsDate: 1/16/2018,
 month: 'January',
 quarter: 'Q1',
 year: 2018,
@@ -79,8 +79,18 @@ merchant: 'Costco',
 accountNo: 98572,
 categoryId: 1,
 amount: 400
-},{
-expsDate: 2-20-2018,
+},
+{
+  expsDate: 3/15/2018,
+  month: 'March',
+  quarter: 'Q1',
+  year: 2018,
+  merchant: 'Kayak',
+  accountNo: 98572,
+  categoryId: 8,
+  amount: 60
+  },{
+expsDate: 2/20/2018,
 month: 'February',
 quarter: 'Q1',
 year: 2018,
@@ -89,7 +99,7 @@ accountNo: 98572,
 categoryId: 1,
 amount: 300
 },{
-expsDate: 3-21-2018,
+expsDate: 3/21/2018,
 month: 'March',
 quarter: 'Q1',
 year: 2018,
@@ -97,8 +107,18 @@ merchant: 'Costco',
 accountNo: 98572,
 categoryId: 1,
 amount: 350
-}, {
-expsDate: 9-18-2017,
+},
+{
+  expsDate: 3/10/2018,
+  month: 'March',
+  quarter: 'Q1',
+  year: 2018,
+  merchant: 'Mass-Mutual',
+  accountNo: 98572,
+  categoryId: 3,
+  amount: 45
+  }, {
+expsDate: 9/18/2017,
 month: 'September',
 quarter: 'Q3',
 year: 2017,
@@ -107,7 +127,7 @@ accountNo: 98572,
 categoryId: 5,
 amount: 85
 },{
-expsDate: 9-28-2017,
+expsDate: 9/28/2017,
 month: 'September',
 quarter: 'Q3',
 year: 2017,
@@ -116,7 +136,16 @@ accountNo: 98572,
 categoryId: 5,
 amount: 300
 },{
-expsDate: 5-21-2017,
+  expsDate: 3/20/2018,
+  month: 'March',
+  quarter: 'Q1',
+  year: 2018,
+  merchant: 'Staples',
+  accountNo: 98572,
+  categoryId: 11,
+  amount: 50
+  },{
+expsDate: 5/21/2017,
 month: 'May',
 quarter: 'Q2',
 year: 2017,
@@ -125,7 +154,7 @@ accountNo: 98572,
 categoryId: 3,
 amount: 600
 },{
-expsDate: 11-15-2017,
+expsDate: 11/15/2017,
 month: 'November',
 quarter: 'Q4',
 year: 2017,

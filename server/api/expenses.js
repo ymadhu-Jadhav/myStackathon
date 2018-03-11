@@ -1,5 +1,7 @@
+const sequelize = require('sequelize')
+const dbforQuery = require('../db')
 const router = require('express').Router()
-const {Expense, Category} = require('../db/models')
+const {Expense, Category,Budget} = require('../db/models')
 module.exports = router
 
 //Get All Expenses
@@ -41,6 +43,10 @@ router.get('/expByYear/:year', (req, res, next)=>{
 })
 // GET all the expenses of the specific category of the specific month.Eg: /categories/1/expenses/4/March
 router.get('/expByMonth/:month/categories/:categoryId', (req, res, next)=>{
+	// console.log("fetchAllExpensesByCategory");
+	//  console.log(req.params.month);
+	//   console.log(req.params.categoryId);
+	  
 	Expense.findAll({ where: {  month: req.params.month, 
 								categoryId: req.params.categoryId
 							}, include: [{ model: Category}]})
@@ -67,13 +73,42 @@ router.get('/expByYear/:year/categories/:categoryId', (req, res, next)=>{
 })
 
 
-//GET sum of all the expenses of the specific category and find all the categories where Expenses > Budget Eg: /:categoryId/expenses/budgets/:categoryId
-// router.get('/:categoryId/expenses', (req, res, next)=>{
-// 	Category.findAll({ where: { id: req.params.categoryId}, include: [{ model: Expense}]})
-// 	.then( manyExpenses => res.json(manyExpenses))
-// 	Category.findById({ where: { id: req.params.categoryId}, include: [{ model: Expense}]})
-// 	.catch(next)
-// })
+
+//GET sum of all the expenses of the specific category 
+
+router.get('/gropupByAllCategory/:month', (req, res, next)=>{
+	// console.log("/gropupByAllCategory/:month");
+	// console.log(req.params.month);
+	//var input='March'; //Hard Coded 
+	
+	//dbforQuery.query("select month,\"categoryId\" from expenses",{type:sequelize.QueryTypes.SELECT})
+	dbforQuery.query("select \"categoryId\",SUM(amount),categories.name from expenses, "+
+	"categories where categories.id=\"categoryId\" and month= :month "+
+	"GROUP BY \"categoryId\",categories.name",
+	{replacements :{month: req.params.month},type:sequelize.QueryTypes.SELECT})
+	.then(expense => res.status(201).json(expense))
+	.catch(next);
+
+
+})
+
+//GET sum of all the expenses of the specific category and sum of budgets of a specific category for comparison (bar chart)
+
+router.get('/gropupByAllCategory/budgets/:month', (req, res, next)=>{
+	// console.log("/gropupByAllCategory/:month");
+	// console.log(req.params.month);
+	//var input='March'; //Hard Coded 
+	
+	//dbforQuery.query("select month,\"categoryId\" from expenses",{type:sequelize.QueryTypes.SELECT})
+	dbforQuery.query("select \"categoryId\",SUM(amount),categories.name from expenses,categories.name frombudgets"+
+	"categories where categories.id=\"categoryId\" and month= :month\"and budgets.id=\"budgetId\"and month= :month\+"
+	,"GROUP BY \"categoryId\",categories.name",
+	{replacements :{month: req.params.month},type:sequelize.QueryTypes.SELECT})
+	.then(expense => res.status(201).json(expense))
+	.catch(next);
+
+
+})
 
 router.post('/', (req, res, next) => {
 	Expense.create(req.body)
