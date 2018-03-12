@@ -4,6 +4,7 @@ import socket from '../socket';
 // ACTION TYPES
 const GET_ALL_EXPENSES = 'GET_ALL_EXPENSES';
 const GET_ALL_EXPENSES_BY_QUARTER = 'GET_ALL_EXPENSES_BY_QUARTER';
+const GET_ALL_EXPENSES_BY_YEAR = 'GET_ALL_EXPENSES_BY_YEAR'
 const GET_EXPENSE = 'GET_EXPENSE';
 const GET_SINGLE_EXPENSE = 'GET_SINGLE_EXPENSE';
 const CREATE_EXPENSE = 'CREATE_EXPENSE';
@@ -14,6 +15,7 @@ const DELETE_EXPENSE = 'DELETE_EXPENSE';
 // ACTION CREATORS
 const allExpenses = (expenses) => ({type: GET_ALL_EXPENSES, expenses});
 const allExpensesByQuarter = (expenses) => ({type: GET_ALL_EXPENSES_BY_QUARTER, expenses});
+const allExpensesByYear= (expenses) => ({type: GET_ALL_EXPENSES_BY_YEAR, expenses});
 const singleExpense = (expense) => ({type: GET_SINGLE_EXPENSE, expense});
 const createExpense = (expense) => ({type: CREATE_EXPENSE, expense});
 const updateExpense  = (expense) => ({type: UPDATE_EXPENSE, expense});
@@ -42,11 +44,39 @@ export const fetchSingleExpense = (expenseId) => {
 	}
 }
 
+// export const fetchAllExpensesByCategory = (timeLine,category) => {
+// 	//console.log("fetchAllExpensesByCategory");
+// 	console.log(timeLine);
+// 	// console.log(category);
+// 	if(timeLine==='Q1'){
+// 		console.log('Inside Q1');	
+// 		return dispatch => {
+// 			return axios.get(`/api/expenses/gropupByAllCategoryByQuarter/${timeLine}`)
+// 				.then( res => dispatch(allExpensesByQuarter(res.data)))
+// 				.catch(err => console.error('Oops! What did you just do in fetchAllExpensesByCategory thunk?', err))
+// 		}
+// 	}else{
+// 		return dispatch => {
+// 			return axios.get(`/api/expenses/gropupByAllCategory/${timeLine}`)
+// 				.then( res => dispatch(allExpenses(res.data)))
+// 				.catch(err => console.error('Oops! What did you just do in fetchAllExpensesByCategory thunk?', err))
+// 		}
+// 	}
+
+	
+// }
+
 export const fetchAllExpensesByCategory = (timeLine,category) => {
 	//console.log("fetchAllExpensesByCategory");
 	console.log(timeLine);
 	// console.log(category);
-	if(timeLine==='Q1'){
+	if(timeLine==='2017'){
+		return dispatch => {
+			return axios.get(`/api/expenses/gropupByAllCategoryByYear/${timeLine}`)
+				.then( res => dispatch(allExpensesByYear(res.data)))
+				.catch(err => console.error('Oops! What did you just do in fetchAllExpensesByCategory thunk?', err))
+		}
+	}else if(timeLine==='Q1'){
 		console.log('Inside Q1');	
 		return dispatch => {
 			return axios.get(`/api/expenses/gropupByAllCategoryByQuarter/${timeLine}`)
@@ -144,6 +174,9 @@ export default function reducer(expenses= [], action) {
 			return action.expenses;
 
 		case GET_ALL_EXPENSES_BY_QUARTER:
+			return action.expenses;	
+
+		case GET_ALL_EXPENSES_BY_YEAR:
 			return action.expenses;	
 
 		case GET_SINGLE_EXPENSE:

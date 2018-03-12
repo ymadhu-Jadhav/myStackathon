@@ -29,6 +29,7 @@ class Routes extends Component {
               {/* Routes placed here are only available after logging in */}
               <Route exact path="/categoriesByMonth/:timeLine" component={AllCategories} />
               <Route exact path="/categoriesByQuarter/:timeLine" component={AllCategories} />
+              <Route exact path="/categoriesByYear/:timeLine" component={AllCategories} />
               <Route exact path="/displayCategories" component={DisplayCategories} />
               <Route exact path="/home" component={AllCategories} />
               <Route exact path="/allBudgets"  component={AllBudgets} />

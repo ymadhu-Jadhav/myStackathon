@@ -12,14 +12,15 @@ const categories = props.category
     
    <div>
     <ul className="list-group">
-      <li className="list-group-item"><NavLink to={'/categoriesByMonth/March'} className="textColor">ALL Category-Expenses Monthly</NavLink></li>
-      <li className="list-group-item"><NavLink to={'/categoriesByQuarter/Q1'} className="textColor">ALL Category-Expenses Quarterly</NavLink></li>
+      <li className="list-group-item"><NavLink to={'/categoriesByMonth/March'} className="textColor">Monthly Expenses </NavLink></li>
+      <li className="list-group-item"><NavLink to={'/categoriesByQuarter/Q1'} className="textColor">Quarterly Expenses</NavLink></li>
+      <li className="list-group-item"><NavLink to={'/categoriesByYear/2017'} className="textColor">Yearly Expenses</NavLink></li>
       <li className="list-group-item"><Link to={'/allBudgets'} className="textColor">Set Budget</Link></li>
       <li className="list-group-item"><Link to={'/trackExpenses'} className="textColor">Track Expenses</Link></li>
       <li className="list-group-item"><Link to={'/newExpenseEntry'} className="textColor">Insert Expenses</Link></li>
       <li className="list-group-item"><Link to={'/displayCategories'} className="textColor">Display All Categories</Link></li>
     </ul>
-   </div>
+    </div>
   )
 }
 

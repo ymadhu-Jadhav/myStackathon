@@ -10,7 +10,7 @@ class singleCategory extends Component {
 
     
   render() {
-    let expenses = this.props.expenses||[];
+    let expenses = this.props.expenses || [];
     
     console.log(expenses);
    
@@ -40,7 +40,7 @@ class singleCategory extends Component {
             <thead className="thead-light">
               <tr>
                 <th scope="col">#Id</th>
-                <th scope="col">Expsense Date</th>
+                <th scope="col">Expense Date</th>
                 <th scope="col">Merchant</th>
                 <th scope="col">Account No</th>
                 <th scope="col">Category Name</th>

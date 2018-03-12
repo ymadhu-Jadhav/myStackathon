@@ -28,14 +28,11 @@ label {
    background-color: #cc8a33;  
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
-}
 .textColor {
   text-decoration: none;
   color: hsl(305, 88%, 35%);
 }
 .table {
-  color: hsl(226, 90%, 35%);
+  color: hsl(256, 91%, 35%);
+  font-size-adjust: initial
 }
