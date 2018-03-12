@@ -20,6 +20,7 @@ import {fetchAllExpensesToCompare} from '../store/expense';
                 <th scope="col">category Name</th>
                 <th scope="col"> Expense Amount</th>
                 <th scope="col"> Budget Amount</th>
+                <th scope="col"> RAG status</th>
               </tr>
             </thead>
             <tbody>
@@ -29,6 +30,10 @@ import {fetchAllExpensesToCompare} from '../store/expense';
                   <td>{expense.name }</td>
                   <td>$ { expense.sum }</td>
                   <td>$ { expense.amount }</td>
+                  {expense.sum > expense.amount ?
+                  <td bgcolor="Red">Over Budget</td> : 
+                  <td bgcolor="Green">Within Budget</td> 
+                  }
                 </tr>
                 ))
               } 

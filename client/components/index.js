@@ -10,6 +10,8 @@ export {default as AllCategories} from './allCategories'
 export {default as SingleCategory} from './singleCategory'
 export {default as AllBudgets} from './allBudgets'
 export {default as TrackExpenses} from './trackExpenses'
+export {default as DisplayCategories} from './displayCategories'
+
 
 
 export {Login, Signup} from './auth-form'

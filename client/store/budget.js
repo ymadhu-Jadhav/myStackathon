@@ -17,6 +17,7 @@ const deleteBudget = (budgetId) => ({type: DELETE_BUDGET, budgetId });
 
 // THUNK CREATORS
 export const fetchAllBudgets = () => {
+	console.log("fetchAllBudgets");
 	return dispatch => {
 		return axios.get('/api/budgets')
 			.then(res => res.data)
@@ -66,6 +67,9 @@ export const postBudget = (budget) => {
 }
 
 export const putBudget = (budgetId, budget) => {
+	console.log("Budget Id is : "+ budgetId);
+	console.log(budget);
+
 	return dispatch => {
 		return axios.put(`/api/budgets/${budgetId}`, budget)
 			.then(res => res.data)

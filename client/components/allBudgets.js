@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchAllBudgets} from '../store/budget';
-import {putBudget} from '../store/budget';
+import {fetchAllBudgets, putBudget} from '../store/budget';
 
 
-   
     
  class allBudgets extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      budgets:this.props.budgets||[],
-      budgetId:this.props.budgetId,
-      value:''
+      budgets: this.props.budgets || [],
+      budgetId: this.props.budgetId,
+      value: '',
+      isEdit: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+   
   }
   componentDidMount() {
     this.props.fetchBudgets();
@@ -28,21 +28,22 @@ import {putBudget} from '../store/budget';
     this.setState({value: event.target.value});
   }
 
-  handleSubmit (event) {
+  handleSubmit(event) {
+    console.log("In handleSubmit");
     event.preventDefault();
-    const id=this.state.budgetId
-   const Amout=this.state.value;
-  
-     this.props.editBudgetInfo(id,amount);
-   }
+    const id = this.state.budgetId;
+    const amount = this.state.value;
+    this.props.editBudgetInfo(id, {amount});
+    
+  }
 
   render() {
-    let budgets = this.props.budgets||[];
-    let budgetId=this.props.budgetId;
+    let budgets = this.props.budgets || [];
+    let budgetId = this.props.budgetId || 0;
     //console.log((budgetId));
     return (
       <div>
-      <form className="form-group"  onSubmit={this.handleSubmit}> 
+      <form className="form-group" onSubmit={(eve) => this.handleSubmit(eve)}> 
        <table className="table table-sm w-75 p-3"  >
             <thead className="thead-light">
               <tr>
@@ -57,7 +58,7 @@ import {putBudget} from '../store/budget';
                 <tr  className="border border-light" key={ budget.id}>
                   <th scope="row">{ budget.id }</th>
                   <td>{ budget.category.name }</td>
-                  {+budgetId===budget.id ? (<td className="w-25 p-3"><input type="text" className="amount" defaultValue={budget.amount} onChange={this.handleChange}/></td>)
+                  {+budgetId === budget.id ? (<td className="w-25 p-3"><input type="text" className="amount" defaultValue={budget.amount} onChange={this.handleChange}/></td>)
                   :(<td>{budget.amount }</td>)
                   }
                   <td><Link to={`/editBudgets/${budget.id}`} className="textColor">Edit</Link></td>
@@ -90,10 +91,15 @@ const mapStateToProps = (state,ownProps) => {
 
 
 const mapDispatchToProps = (dispatch,ownProps) => {
+  console.log("mapDispatchToProps ");
+
+  const budgetId = ownProps.match.params.budgetId ||0;
   
   return {
+    editBudgetInfo: (id,Amount) => dispatch((putBudget(id,{Amount}))),
     fetchBudgets: () => dispatch(fetchAllBudgets())
   }
+  
   // ,
   // {
   //   editBudgetInfo: (id,Amount) => dispatch((putBudget(id,{Amount})))

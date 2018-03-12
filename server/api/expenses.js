@@ -74,7 +74,7 @@ router.get('/expByYear/:year/categories/:categoryId', (req, res, next)=>{
 
 
 
-//GET sum of all the expenses of the specific category 
+//GET sum of all the expenses group by  category monthly
 
 router.get('/gropupByAllCategory/:month', (req, res, next)=>{
 	// console.log("/gropupByAllCategory/:month");
@@ -92,6 +92,18 @@ router.get('/gropupByAllCategory/:month', (req, res, next)=>{
 
 })
 
+//GET sum of all the expenses group by  category Quartley
+router.get('/gropupByAllCategoryByQuarter/:quarter', (req, res, next)=>{
+	
+	dbforQuery.query("select \"categoryId\",SUM(amount),categories.name from expenses, "+
+	"categories where categories.id=\"categoryId\" and quarter= :quarter "+
+	"GROUP BY \"categoryId\",categories.name",
+	{replacements :{quarter: req.params.quarter},type:sequelize.QueryTypes.SELECT})
+	.then(expense => res.status(201).json(expense))
+	.catch(next);
+
+
+})
 //GET sum of all the expenses of the specific category and sum of budgets of a specific category for comparison (bar chart)
 
 router.get('/gropupByAllCategory/budgets/:month', (req, res, next)=>{

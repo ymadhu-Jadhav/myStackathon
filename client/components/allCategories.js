@@ -1,22 +1,44 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {withRouter,Link} from 'react-router-dom'
 import {fetchAllExpensesByCategory} from '../store/expense';
 import {PieChart} from 'react-easy-chart';
 
  class AllCategories extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timeLine:'',
+      chartData:[]
+    };
+  }
   componentDidMount() {
+    console.log("componentDidMount");
     this.props.fetchExpenses();
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps);
+    if(nextProps.timeLine!=this.props.timeLine)
+    {
+    this.props.fetchExpenses();
+    }
+  }
+//   shouldComponentUpdate(nextProps, nextState){
+//     console.log("shouldComponentUpdate");
+//     // return a boolean value
+//     return true;
+// }
+
   render() {
-    let expenses = this.props.expenses||[];
+    let expenses=[] ;
+    expenses = this.props.expenses;
     
-    //console.log(expenses);
+  
    
      return (
       <div align='center'>
-       <h5 > My Spending for {this.props.timeLine} </h5>
+       <h5 > Your Spendings for {this.props.timeLine} </h5>
        <div>
           <PieChart
               labels
@@ -36,7 +58,7 @@ import {PieChart} from 'react-easy-chart';
               data={this.props.chartData}
             />
       </div>  
-       <div>
+       <div >
        <table className="table table-sm w-75 p-3"  >
             <thead className="thead-light">
               <tr>
@@ -47,15 +69,14 @@ import {PieChart} from 'react-easy-chart';
             </thead>
             <tbody>
               {expenses.length && expenses.map(expense => ( 
-                <tr  className="border border-light" key={ expense.categoryId }>
-                  <th scope="row">{ expense.categoryId }</th>
-                  <Link to={`/categories/singleCategory/${expense.categoryId}`}><td>{expense.name }</td></Link>
-                  <td>$ { expense.sum }</td>
-                </tr>
+                  <tr  className="border border-light" key={ expense.categoryId }>
+                      <td scope="row">{ expense.categoryId }</td>
+                      <td><Link to={`/categories/singleCategory/${expense.categoryId}`}>{expense.name }</Link></td>
+                      <td>$ { expense.sum }</td>
+                  </tr>
                 ))
               } 
-             
-            </tbody>
+             </tbody>
           </table>  
       </div>  
       </div>
@@ -77,8 +98,9 @@ function toObject(arr) {
     chartObj.key = arr[i].name;
     chartObj.value = arr[i].sum;
     chartObj.color = colorArr[i];
-    }
     returnArray.push(chartObj); 
+    }
+   
   }
  
   return returnArray;
@@ -86,8 +108,7 @@ function toObject(arr) {
 
 const mapStateToProps = (state,ownProps) => {
   //console.log(state);
-  const timeLine = ownProps.match.params.timeLine || "March";
-  
+  const timeLine = ownProps.match.params.timeLine || 'March';
   const chartData=toObject(state.expense);
   
   
@@ -95,16 +116,16 @@ const mapStateToProps = (state,ownProps) => {
     expenses: state.expense,
     timeLine: timeLine,
     chartData: chartData
-  }
+  } 
 }
 
 
 const mapDispatchToProps = (dispatch,ownProps) => {
-  const timeLine = ownProps.match.params.timeLine || "March";
+  const timeLine = ownProps.match.params.timeLine || "March" ;
   const category = ownProps.match.params.category || "All";
-
+  console.log(timeLine);
   /*
-    if timeline is not Q and Year then dispactcg fetchAllExpensesByCategory
+    if timeline is not Q and Year then dispacth fetchAllExpensesByCategory
     else
     fetchAllExpensesBySingleCategory
     fetchQuarterlyExpBySingleCategory
@@ -113,8 +134,15 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 
   */
   return {
-    fetchExpenses: () => dispatch(fetchAllExpensesByCategory(timeLine,category))
+    fetchExpenses: () => dispatch(fetchAllExpensesByCategory(timeLine, category))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllCategories);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AllCategories));
+
+
+
+
+
+
+

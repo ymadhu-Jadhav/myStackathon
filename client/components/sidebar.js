@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom'
+import {withRouter,Link,NavLink} from 'react-router-dom'
+
 
 
 const SideBar = (props) => {
@@ -8,11 +9,14 @@ const SideBar = (props) => {
 const categories = props.category
 
   return (
+    
    <div>
-    <ul class="list-group">
-      <li class="list-group-item"><Link to={'/categories'} className="textColor">ALL Categories</Link></li>
-      <li class="list-group-item"><Link to={'/allBudgets'} className="textColor">Set Budget</Link></li>
-      <li class="list-group-item"><Link to={'/trackExpenses'} className="textColor">Track Expenses</Link></li>
+    <ul className="list-group">
+      <li className="list-group-item"><NavLink to={'/categoriesByMonth/March'} className="textColor">ALL Category-Expenses Monthly</NavLink></li>
+      <li className="list-group-item"><NavLink to={'/categoriesByQuarter/Q1'} className="textColor">ALL Category-Expenses Quarterly</NavLink></li>
+      <li className="list-group-item"><Link to={'/allBudgets'} className="textColor">Set Budget</Link></li>
+      <li className="list-group-item"><Link to={'/trackExpenses'} className="textColor">Track Expenses</Link></li>
+      <li className="list-group-item"><Link to={'/displayCategories'} className="textColor">Display All Categories</Link></li>
     </ul>
    </div>
   )
@@ -25,4 +29,4 @@ const mapState = (state) => {
 }
 
 
-export default connect(mapState)(SideBar);
+export default withRouter(connect(mapState)(SideBar));

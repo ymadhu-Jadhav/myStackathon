@@ -26,7 +26,7 @@ const users = [{
 
 const categories = [{
   name: 'Groceries',
-  image: '/images/tampons1.png'
+  image: '/images/grocery.png'
 }, {
     name: 'Transportation',
     image: '/images/tampons1.png'
@@ -40,7 +40,7 @@ const categories = [{
     name: 'Restaurant',
     image: '/images/tampons1.png'
 }, {
-    name: 'Shopping & Entertainment',
+    name: 'Shop & Ent',
     image: '/images/tampons1.png'
 }, {
     name: 'Home & Utilities',
@@ -70,7 +70,34 @@ accountNo: 98572,
 categoryId: 2,
 amount: 285
 
-}, {
+},{expsDate: '1/28/2018',
+month: 'January',
+quarter: 'Q1',
+year: 2018,
+merchant: 'Nj-Transit',
+accountNo: 98572,
+categoryId: 2,
+amount: 285
+
+}, {expsDate: '1/22/2018',
+month: 'January',
+quarter: 'Q1',
+year: 2018,
+merchant: 'ACME',
+accountNo: 98572,
+categoryId: 1,
+amount: 85
+
+}, {expsDate: '3/28/2018',
+month: 'January',
+quarter: 'Q1',
+year: 2018,
+merchant: 'ACME',
+accountNo: 98572,
+categoryId: 1,
+amount: 285
+
+},  {
 expsDate: '1/16/2018',
 month: 'January',
 quarter: 'Q1',
@@ -79,7 +106,25 @@ merchant: 'Costco',
 accountNo: 98572,
 categoryId: 1,
 amount: 400
-},
+},{
+  expsDate: '2/16/2018',
+  month: 'February',
+  quarter: 'Q1',
+  year: 2018,
+  merchant: 'Red-Lobster',
+  accountNo: 98572,
+  categoryId: 5,
+  amount: 85
+  },{
+    expsDate: '2/21/2018',
+    month: 'February',
+    quarter: 'Q1',
+    year: 2018,
+    merchant: 'Olive-Garden',
+    accountNo: 98572,
+    categoryId: 5,
+    amount: 100
+    },
 {
   expsDate: '3/15/2018',
   month: 'March',
@@ -88,7 +133,7 @@ amount: 400
   merchant: 'Walgreens',
   accountNo: 98572,
   categoryId: 4,
-  amount: 60
+  amount: 350
   },{
 expsDate: '2/20/2018',
 month: 'February',
@@ -107,6 +152,14 @@ merchant: 'Costco',
 accountNo: 98572,
 categoryId: 1,
 amount: 350
+},{expsDate:'1/27/2018',
+month: 'January',
+quarter: 'Q1',
+year: 2018,
+merchant: 'Costco',
+accountNo: 98572,
+categoryId: 1,
+amount: 250
 },
 {
   expsDate: '3/10/2018',
@@ -116,7 +169,7 @@ amount: 350
   merchant: 'Mass-Mutual',
   accountNo: 98572,
   categoryId: 3,
-  amount: 45
+  amount: 750
   }, {
 expsDate: '9/18/2017',
 month: 'September',
@@ -181,11 +234,74 @@ merchant: 'Kids-Academy',
 accountNo: 98572,
 categoryId: 9,
 amount: 750
-}]
+},{
+  expsDate: '1/9/2018',
+  month: 'January',
+  quarter: 'Q1',
+  year: 2018,
+  merchant: 'Birthday-Party',
+  accountNo: 98572,
+  categoryId: 11,
+  amount: 150
+  },{
+    expsDate: '1/19/2018',
+    month: 'January',
+    quarter: 'Q1',
+    year: 2018,
+    merchant: 'Stem-Academy',
+    accountNo: 98572,
+    categoryId: 9,
+    amount: 350
+    },{
+      expsDate: '2/19/2018',
+      month: 'February',
+      quarter: 'Q1',
+      year: 2018,
+      merchant: 'Stem-Academy',
+      accountNo: 98572,
+      categoryId: 9,
+      amount: 350
+      },{
+        expsDate: '2/12/2018',
+        month: 'February',
+        quarter: 'Q1',
+        year: 2018,
+        merchant: 'Kayak',
+        accountNo: 98572,
+        categoryId: 8,
+        amount: 700
+        },{
+          expsDate: '2/15/2018',
+          month: 'February',
+          quarter: 'Q1',
+          year: 2018,
+          merchant: 'Costco',
+          accountNo: 98572,
+          categoryId: 1,
+          amount: 90
+          },{
+            expsDate: '3/15/2018',
+            month: 'March',
+            quarter: 'Q1',
+            year: 2018,
+            merchant: 'Kayak',
+            accountNo: 98572,
+            categoryId: 8,
+            amount: 600
+            },{
+              expsDate: '3/18/2018',
+              month: 'March',
+              quarter: 'Q1',
+              year: 2018,
+              merchant: 'Target',
+              accountNo: 98572,
+              categoryId: 6,
+              amount: 600
+              }]
 
 const budgets = [{
 categoryId: 1,
-amount: 350
+amount: 700
 
 }, {
 categoryId: 2,
@@ -197,7 +313,7 @@ amount: 750
 
 }, {
 categoryId: 4,
-amount: 600
+amount: 400
 
 },{
 categoryId: 5,

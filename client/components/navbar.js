@@ -7,7 +7,7 @@ import {logout} from '../store'
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
     <nav className="navBar">
-    <h1>X-spenditure<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqMNflmhLzdOiEIu8ZJAOU9pDGyQGDV3mJUE0JBuc8EgdjLbgW" width="120px" /></h1>
+    <h1><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3RCbvdT5RewBjP2gJ9-LOEdrdIxjom0YiL-iGCEy_9E2EEVkccg" width="80px" />X-spenditure</h1>
     <nav>
       {isLoggedIn ? (
         <div>

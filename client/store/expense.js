@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // ACTION TYPES
 const GET_ALL_EXPENSES = 'GET_ALL_EXPENSES';
+const GET_ALL_EXPENSES_BY_QUARTER = 'GET_ALL_EXPENSES_BY_QUARTER';
 const GET_SINGLE_EXPENSE = 'GET_SINGLE_EXPENSE';
 const CREATE_EXPENSE = 'CREATE_EXPENSE';
 const UPDATE_EXPENSE = 'UPDATE_EXPENSE';
@@ -10,6 +11,7 @@ const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 // ACTION CREATORS
 const allExpenses = (expenses) => ({type: GET_ALL_EXPENSES, expenses});
+const allExpensesByQuarter = (expenses) => ({type: GET_ALL_EXPENSES_BY_QUARTER, expenses});
 const singleExpense = (expense) => ({type: GET_SINGLE_EXPENSE, expense});
 const createExpense = (expense) => ({type: CREATE_EXPENSE, expense});
 const updateExpense  = (expense) => ({type: UPDATE_EXPENSE, expense});
@@ -38,14 +40,25 @@ export const fetchSingleExpense = (expenseId) => {
 }
 
 export const fetchAllExpensesByCategory = (timeLine,category) => {
-	// console.log("fetchAllExpensesByCategory");
-	// console.log(timeLine);
+	//console.log("fetchAllExpensesByCategory");
+	console.log(timeLine);
 	// console.log(category);
-	return dispatch => {
-		return axios.get(`/api/expenses/gropupByAllCategory/${timeLine}`)
-			.then( res => dispatch(allExpenses(res.data)))
-			.catch(err => console.error('Oops! What did you just do in fetchAllExpensesByCategory thunk?', err))
+	if(timeLine==='Q1'){
+		console.log('Inside Q1');	
+		return dispatch => {
+			return axios.get(`/api/expenses/gropupByAllCategoryByQuarter/${timeLine}`)
+				.then( res => dispatch(allExpensesByQuarter(res.data)))
+				.catch(err => console.error('Oops! What did you just do in fetchAllExpensesByCategory thunk?', err))
+		}
+	}else{
+		return dispatch => {
+			return axios.get(`/api/expenses/gropupByAllCategory/${timeLine}`)
+				.then( res => dispatch(allExpenses(res.data)))
+				.catch(err => console.error('Oops! What did you just do in fetchAllExpensesByCategory thunk?', err))
+		}
 	}
+
+	
 }
 
 export const fetchAllExpensesBySingleCategory = (timeLine,categoryId) => {
@@ -109,12 +122,15 @@ export const removeExpense = (expenseId) => {
 //const expense = []
 // REDUCER
 export default function reducer(expenses= [], action) {
-	// console.log(action.type);
+	console.log(action.type);
 	// console.log(action);
 	switch (action.type) {
 		
 		case GET_ALL_EXPENSES:
 			return action.expenses;
+
+		case GET_ALL_EXPENSES_BY_QUARTER:
+			return action.expenses;	
 
 		case GET_SINGLE_EXPENSE:
 			return action.expense;
