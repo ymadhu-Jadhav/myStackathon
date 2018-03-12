@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {withRouter,Link} from 'react-router-dom'
 import {fetchAllBudgets, putBudget} from '../store/budget';
 
 
@@ -33,7 +33,6 @@ import {fetchAllBudgets, putBudget} from '../store/budget';
     console.log("In handleSubmit"+id);
     const amount = this.state.value;
     this.props.editBudgetInfo(id, {amount});
-    
   }
 
   render() {
@@ -106,4 +105,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
  //]
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(allBudgets);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(allBudgets));

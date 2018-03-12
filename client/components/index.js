@@ -11,7 +11,7 @@ export {default as SingleCategory} from './singleCategory'
 export {default as AllBudgets} from './allBudgets'
 export {default as TrackExpenses} from './trackExpenses'
 export {default as DisplayCategories} from './displayCategories'
-export {default as NewExpenseEntry} from './newExpenseEntry'
+// export {default as NewExpenseEntry} from './newExpenseEntry'
 
 
 

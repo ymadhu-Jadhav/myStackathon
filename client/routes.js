@@ -36,7 +36,7 @@ class Routes extends Component {
               <Route exact path="/editBudgets/:budgetId"  component={AllBudgets} />
               <Route exact path="/categories/singleCategory/:categoryId"  component={SingleCategory} />
               <Route exact path="/trackExpenses"  component={TrackExpenses} />
-              <Route exact path="/newExpenseEntry"  component={NewExpenseEntry} />
+              {/* <Route exact path="/newExpenseEntry"  component={NewExpenseEntry} /> */}
               
             </Switch>
         }

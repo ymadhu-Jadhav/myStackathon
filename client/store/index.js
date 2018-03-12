@@ -6,9 +6,9 @@ import user from './user'
 import category from './category'
 import expense from './expense'
 import budget from './budget'
-import newExpenseEntry from './newExpenseEntry'
+// import newExpenseEntry from './newExpenseEntry'
 
-const reducer = combineReducers({user,expense, budget,category,newExpenseEntry})
+const reducer = combineReducers({user,expense, budget,category})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -20,4 +20,4 @@ export * from './user'
 export * from './category'
 export * from './expense'
 export * from './budget'
-export * from './newExpenseEntry'
+// export * from './newExpenseEntry'

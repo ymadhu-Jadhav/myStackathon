@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {fetchAllExpensesBySingleCategory} from '../store/expense';
 import {PieChart} from 'react-easy-chart';
-
+import { withRouter,Link } from 'react-router-dom';
 class singleCategory extends Component {
     componentDidMount() {
       this.props.fetchAllExpBySingleCategory();
@@ -121,4 +121,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     }
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(singleCategory);
+export default   withRouter(connect(mapStateToProps, mapDispatchToProps)(singleCategory));

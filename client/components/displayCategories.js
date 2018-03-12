@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter,Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchAllCategories} from '../store/category';
 
@@ -18,7 +18,7 @@ class displayCategories extends Component {
       
    
      <div>
-          <h5>In display categories component</h5>
+          {/* <h5>In display categories component</h5> */}
           <div>
        <table className="table table-sm w-75 p-3"  >
             <thead className="thead-light">
@@ -60,7 +60,7 @@ const mapDispatchToProps= (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(displayCategories)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(displayCategories));
 
 
 

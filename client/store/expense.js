@@ -68,7 +68,7 @@ export const fetchSingleExpense = (expenseId) => {
 
 export const fetchAllExpensesByCategory = (timeLine,category) => {
 	//console.log("fetchAllExpensesByCategory");
-	console.log(timeLine);
+	console.log('!!!!!!!! TIMELINE', timeLine);
 	// console.log(category);
 	if(timeLine==='2017'){
 		return dispatch => {

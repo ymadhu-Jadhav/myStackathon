@@ -14,14 +14,16 @@ import {PieChart} from 'react-easy-chart';
   }
   componentDidMount() {
     console.log("componentDidMount");
-    this.props.fetchExpenses();
+    this.props.fetchExpenses(this.props.timeLine);
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps);
-    if(nextProps.timeLine!=this.props.timeLine)
+    console.log(nextProps.timeLine +"NEXT PROPS");
+    console.log(this.props.timeLine + "PROPS NOW");
+
+    if(nextProps.timeLine!==this.props.timeLine)
     {
-    this.props.fetchExpenses();
+    this.props.fetchExpenses(nextProps.timeLine);
     }
   }
 //   shouldComponentUpdate(nextProps, nextState){
@@ -33,7 +35,7 @@ import {PieChart} from 'react-easy-chart';
   render() {
     let expenses=[] ;
     expenses = this.props.expenses;
-    
+    console.log('MEMEMEMEMEME?!')
   
    
      return (
@@ -59,7 +61,7 @@ import {PieChart} from 'react-easy-chart';
             />
       </div>  
        <div >
-       <table className="table table-sm w-75 p-3"  >
+          <table className="table table-sm w-75 p-3">
             <thead className="thead-light">
               <tr>
                 <th scope="col">#Id</th>
@@ -68,15 +70,14 @@ import {PieChart} from 'react-easy-chart';
               </tr>
             </thead>
             <tbody>
-              {expenses.length && expenses.map(expense => ( 
-                  <tr  className="border border-light" key={ expense.categoryId }>
-                      <td scope="row">{ expense.categoryId }</td>
-                      <td><Link to={`/categories/singleCategory/${expense.categoryId}`}>{expense.name }</Link></td>
-                      <td>$ { expense.sum }</td>
-                  </tr>
-                ))
+              {expenses.length && expenses.map((expense, i) => ( 
+                <tr className="border border-light" key={i}>
+                <td scope="row">{expense.categoryId}</td>
+                <td><Link to={`/categories/singleCategory/${expense.categoryId}`}>{expense.name}</Link></td>
+                <td>${expense.sum}</td></tr>
+              ))
               } 
-             </tbody>
+            </tbody>
           </table>  
       </div>  
       </div>
@@ -87,13 +88,12 @@ import {PieChart} from 'react-easy-chart';
 
 
 function toObject(arr) {
+  console.log(arr + '###########array#######')
   var returnArray=[];
   var colorArr=['#00bfff','#FF1493','#7FFFD4','#FFD700','#E9967A','#90EE90','#80ff00','	#E9967A','	#FF1493','#90EE90','#FFD700'];
-  console.log(colorArr.length);
-  for (var i = 0;i < arr.length;i++)
-  {
-    if (arr[i] !== undefined)
-    { 
+  //console.log(colorArr.length+"?????????????? color array ???????");
+  for (var i = 0;i < arr.length;i++){
+    if (arr[i] !== undefined){ 
     var chartObj = {};  
     chartObj.key = arr[i].name;
     chartObj.value = arr[i].sum;
@@ -107,7 +107,8 @@ function toObject(arr) {
 }
 
 const mapStateToProps = (state,ownProps) => {
-  //console.log(state);
+  //console.log(state+ "##########");
+  console.log(JSON.stringify(state.expense[0]), "#########################")
   const timeLine = ownProps.match.params.timeLine || 'March';
   const chartData=toObject(state.expense);
   
@@ -121,9 +122,10 @@ const mapStateToProps = (state,ownProps) => {
 
 
 const mapDispatchToProps = (dispatch,ownProps) => {
-  const timeLine = ownProps.match.params.timeLine || "March" ;
+  // const timeLine = ownProps.match.params.timeLine || "March" ;
+  // console.log('timeline in props dispatch', timeLine)
   const category = ownProps.match.params.category || "All";
-  console.log(timeLine);
+  // console.log(timeLine);
   /*
     if timeline is not Q and Year then dispacth fetchAllExpensesByCategory
     else
@@ -134,7 +136,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 
   */
   return {
-    fetchExpenses: () => dispatch(fetchAllExpensesByCategory(timeLine, category))
+    fetchExpenses: (timeLine) => dispatch(fetchAllExpensesByCategory(timeLine || 'March', category))
   }
 }
 

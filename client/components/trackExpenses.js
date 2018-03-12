@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {fetchAllExpensesToCompare} from '../store/expense';
 import {BarChart} from 'react-easy-chart';
-
+import { withRouter} from 'react-router-dom';
  class trackExpenses extends Component {
   
   componentDidMount() {
@@ -12,7 +12,7 @@ import {BarChart} from 'react-easy-chart';
   render() {
     let expenses = this.props.expenses||[];
     return (
-      <div>trackExpenses
+      <div>
           <div align='center'>
           <BarChart
               axisLabels={{x: 'My x Axis', y: 'My y Axis', y2: 'My second y Axis'}}
@@ -113,4 +113,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
   
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(trackExpenses)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(trackExpenses));
