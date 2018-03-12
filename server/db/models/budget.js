@@ -13,12 +13,12 @@ const Budget = db.define('budget', {
     }
 })
 
-Budget.hook('beforeValidate', (budget) => {
-    return Category.findOne({where: {id: budget.categoryId }})
-      .then( category => {
-        category.id = category.name;
-        category.id = category.image;
-      })
-  })
+// Budget.hook('beforeValidate', (budget) => {
+//     return Category.findOne({where: {id: budget.categoryId }})
+//       .then( category => {
+//         category.id = category.name;
+//         category.id = category.image;
+//       })
+//   })
 
   module.exports = Budget;  

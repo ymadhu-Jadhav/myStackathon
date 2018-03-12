@@ -1,8 +1,10 @@
 import axios from 'axios';
+import socket from '../socket';
 
 // ACTION TYPES
 const GET_ALL_EXPENSES = 'GET_ALL_EXPENSES';
 const GET_ALL_EXPENSES_BY_QUARTER = 'GET_ALL_EXPENSES_BY_QUARTER';
+const GET_EXPENSE = 'GET_EXPENSE';
 const GET_SINGLE_EXPENSE = 'GET_SINGLE_EXPENSE';
 const CREATE_EXPENSE = 'CREATE_EXPENSE';
 const UPDATE_EXPENSE = 'UPDATE_EXPENSE';
@@ -16,6 +18,7 @@ const singleExpense = (expense) => ({type: GET_SINGLE_EXPENSE, expense});
 const createExpense = (expense) => ({type: CREATE_EXPENSE, expense});
 const updateExpense  = (expense) => ({type: UPDATE_EXPENSE, expense});
 const deleteExpense = (expenseId) => ({type: DELETE_EXPENSE, expenseId });
+const getExpense =(expense) => ({type: GET_EXPENSE,expense})
 
 // THUNK CREATORS
 export const fetchAllExpenses = () => {
@@ -93,15 +96,26 @@ export const fetchSingleExpenseByCategory = (categoryId, expenseId) => {
 	}
 }
 
-export const postExpense = (expense) => {
-	return dispatch => {
-		 return axios.post(`/api/expenses`, expense)
-			.then(res => res.data)
-			.then(res => dispatch(createExpense(res)))
-			.catch(err => console.error('Oops! Looks like something is wrong in postExpense thunk.', err))
-	}
-}
+// export const postExpense = (expense) => {
+// 	return dispatch => {
+// 		 return axios.post(`/api/expenses`, expense)
+// 			.then(res => res.data)
+// 			.then(res => dispatch(createExpense(res)))
+// 			.catch(err => console.error('Oops! Looks like something is wrong in postExpense thunk.', err))
+// 	}
+// }
+export function postExpense (expense) {
 
+	return function thunk (dispatch) {
+	  return axios.post('/api/expenses', expense)
+		.then(res => res.data)
+		.then(newExpense => {
+		  const action = getExpense(newExpense);
+		  dispatch(action);
+		  socket.emit('new-expense', newExpense);
+		});
+	};
+  }
 export const putExpense = (expenseId, expense) => {
 	return dispatch => {
 		return axios.put(`/api/expenses/${expenseId}`, expense)
@@ -134,6 +148,9 @@ export default function reducer(expenses= [], action) {
 
 		case GET_SINGLE_EXPENSE:
 			return action.expense;
+
+		case GET_EXPENSE:
+			return [...expenses, action.expense];
 
 		case CREATE_EXPENSE:
 			return Object.assign({}, expenses, action.expense)

@@ -19,9 +19,7 @@ import {fetchAllBudgets, putBudget} from '../store/budget';
     this.handleSubmit = this.handleSubmit.bind(this);
    
   }
-  componentDidMount() {
-    this.props.fetchBudgets();
-  }
+  
 
   handleChange(event) {
     console.log(event.target.value);
@@ -32,6 +30,7 @@ import {fetchAllBudgets, putBudget} from '../store/budget';
     console.log("In handleSubmit");
     event.preventDefault();
     const id = this.state.budgetId;
+    console.log("In handleSubmit"+id);
     const amount = this.state.value;
     this.props.editBudgetInfo(id, {amount});
     
@@ -96,8 +95,8 @@ const mapDispatchToProps = (dispatch,ownProps) => {
   const budgetId = ownProps.match.params.budgetId ||0;
   
   return {
-    editBudgetInfo: (id,Amount) => dispatch((putBudget(id,{Amount}))),
-    fetchBudgets: () => dispatch(fetchAllBudgets())
+    editBudgetInfo: (id,amount) => dispatch((putBudget(id,{amount})))
+    //fetchBudgets: () => dispatch(fetchAllBudgets())
   }
   
   // ,

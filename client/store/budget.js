@@ -71,7 +71,7 @@ export const putBudget = (budgetId, budget) => {
 	console.log(budget);
 
 	return dispatch => {
-		return axios.put(`/api/budgets/${budgetId}`, budget)
+		return axios.put(`/api/budgets/updateInfo/${budgetId}`, budget)
 			.then(res => res.data)
 			.then(budget => dispatch(updateBudge(budget)))
 			.catch(err => console.error('Oops! Looks like something is wrong in putBudget thunk.', err))

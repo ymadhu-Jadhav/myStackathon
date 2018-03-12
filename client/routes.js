@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import {Login, Signup, UserHome, AllCategories, Sidebar, SingleCategory,AllBudgets, TrackExpenses,DisplayCategories} from './components'
+import {Login, Signup, UserHome, AllCategories, Sidebar, SingleCategory, AllBudgets, TrackExpenses, DisplayCategories, NewExpenseEntry} from './components'
 import {me,fetchAllCategories,fetchAllBudgets } from './store'
 
 /**
@@ -35,7 +35,8 @@ class Routes extends Component {
               <Route exact path="/editBudgets/:budgetId"  component={AllBudgets} />
               <Route exact path="/categories/singleCategory/:categoryId"  component={SingleCategory} />
               <Route exact path="/trackExpenses"  component={TrackExpenses} />
-             
+              <Route exact path="/newExpenseEntry"  component={NewExpenseEntry} />
+              
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
@@ -61,6 +62,7 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(fetchAllBudgets())
     }
   }
 }

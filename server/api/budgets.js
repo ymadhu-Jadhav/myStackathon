@@ -25,13 +25,26 @@ router.post('/', (req, res, next) => {
 		.catch(next);
 })
 
-router.put('/:budgetid', (req, res, next) => {
-	Budget.update(req.body, {
-		where: {id: req.params.budgetid},
-    returning: true
+router.put('/updateInfo/:budgetid', (req, res, next) => {
+	console.log("/updateInfo/:budgetid");
+	var budgetId=parseInt(req.params.budgetid);
+
+	Budget.findById(budgetId)
+		.then(function(budget){
+			return budget.update(req.body)
 		})
-		.then(([_, updated]) => res.status(201).json(updated[0]))
-		.catch(next)
+		.then(function(updatedBudget){	
+			res.status(200).send(updatedBudget);
+		})
+		.catch(next);
+
+	//console.log(req.body);
+	// Budget.update({amount:req.body.amount}, {
+	// 	where: {id: budgetId},
+    // returning: true
+	// 	})
+	// 	.then(([_, updated]) => res.status(201).json(updated[0]))
+	// 	.catch(next)
 })
 
 router.delete('/:budgetid', (req, res, next) => {
