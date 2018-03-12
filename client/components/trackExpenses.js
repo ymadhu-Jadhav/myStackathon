@@ -35,12 +35,12 @@ import { withRouter} from 'react-router-dom';
                 <th scope="col">category Name</th>
                 <th scope="col"> Expense Amount</th>
                 <th scope="col"> Budget Amount</th>
-                <th scope="col"> RAG status</th>
+                <th scope="col"> Budget Alert </th>
               </tr>
             </thead>
             <tbody>
-              {expenses.length && expenses.map(expense => ( 
-                <tr  className="border border-light" key={ expense.categoryId }>
+              {expenses.length && expenses.map((expense,i)=> ( 
+                <tr  className="border border-light" key={i}>
                   <th scope="row">{ expense.categoryId }</th>
                   <td>{expense.name }</td>
                   <td>$ { expense.sum }</td>

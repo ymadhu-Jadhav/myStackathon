@@ -148,7 +148,6 @@ const expenses = [{
     accountNo: 98572,
     categoryId: 2,
     amount: 285
-    
     },{expsDate: '1/28/2018',
     month: 'January',
     quarter: 'Q1',

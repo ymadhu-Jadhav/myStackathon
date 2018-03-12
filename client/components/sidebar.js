@@ -17,7 +17,7 @@ const categories = props.category
       <li className="list-group-item"><NavLink to={'/categoriesByYear/2017'} className="textColor">Yearly Expenses</NavLink></li>
       <li className="list-group-item"><Link to={'/allBudgets'} className="textColor">Set Budget</Link></li>
       <li className="list-group-item"><Link to={'/trackExpenses'} className="textColor">Track Expenses</Link></li>
-      {/* <li className="list-group-item"><Link to={'/newExpenseEntry'} className="textColor">Insert Expenses</Link></li> */}
+      <li className="list-group-item"><Link to={'/newExpenseEntry'} className="textColor">Insert Expenses</Link></li>
       <li className="list-group-item"><Link to={'/displayCategories'} className="textColor">Display All Categories</Link></li>
     </ul>
     </div>
